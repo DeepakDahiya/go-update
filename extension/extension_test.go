@@ -107,5 +107,5 @@ func TestS3BucketForExtension(t *testing.T) {
 	assert.Equal(t, GetS3ExtensionBucketHost(ipfsExtensionLinux.ID), "ipfs.bravesoftware.com")
 	lightThemeExtension, ok := allExtensionsMap.Load("ldimlcelhnjgpjjemdjokpgeeikdinbm")
 	assert.True(t, ok)
-	assert.Equal(t, GetS3ExtensionBucketHost(lightThemeExtension.ID), "brave-core-ext.s3.brave.com")
+	assert.Equal(t, GetS3ExtensionBucketHost(lightThemeExtension.ID), "express-core-ext.s3.brave.com")
 }

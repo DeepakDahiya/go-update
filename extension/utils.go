@@ -69,7 +69,7 @@ func GetS3ExtensionBucketHost(id string) string {
 		return GetS3IPFSExtensionBucketHost()
 	}
 
-	return lookupEnvFallback("S3_EXTENSIONS_BUCKET_HOST", "brave-core-ext.s3.brave.com")
+	return lookupEnvFallback("S3_EXTENSIONS_BUCKET_HOST", "express-core-ext.s3.brave.com")
 }
 
 // GetS3TorExtensionBucketHost returns the url to use for accessing tor client crx
