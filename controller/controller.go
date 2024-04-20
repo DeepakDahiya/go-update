@@ -261,14 +261,11 @@ func UpdateExtensions(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("Error reading body %v", err), http.StatusBadRequest)
 		return
 	}
-
-	fmt.Println("HERE 1")
 	// Special case, if there's only 1 extension in the request and it is not something
 	// we know about, redirect the client to google component update server.
 	if len(updateRequest) == 1 {
-		fmt.Println("HERE 2")
 		_, ok := AllExtensionsMap.Load(updateRequest[0].ID)
-		if !ok && updateRequest[0].ID != extension.BraveAdBlockResourcesLibraryExtensionID {
+		if !ok {
 			queryString := ""
 			if len(r.URL.RawQuery) != 0 {
 				queryString = "?" + r.URL.RawQuery
@@ -285,8 +282,6 @@ func UpdateExtensions(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-
-	fmt.Println("HERE 3")
 
 	if jsonRequest {
 		w.Header().Set("content-type", "application/json")

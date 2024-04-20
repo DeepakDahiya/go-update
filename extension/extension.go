@@ -77,10 +77,6 @@ func CompareVersions(version1 string, version2 string) int {
 	return 0
 }
 
-// For some reason Brave Ad Block resources Library have incorrect id while sending requests.
-// For now we want to map it to correct one manually
-var BraveAdBlockResourcesLibraryExtensionID = "clhhkcebpcklfnlfgcbjofofnklpifgg"
-
 // FilterForUpdates filters `extensions` down to only the extensions that are being checked,
 // and only the ones that we have updates for.
 func (updateRequest *UpdateRequest) FilterForUpdates(allExtensionsMap *ExtensionsMap) UpdateResponse {
@@ -88,12 +84,7 @@ func (updateRequest *UpdateRequest) FilterForUpdates(allExtensionsMap *Extension
 	allExtensionsMap.RLock()
 	defer allExtensionsMap.RUnlock()
 	for _, extensionBeingChecked := range *updateRequest {
-		extensionIdBeingChecked := extensionBeingChecked.ID
-		if extensionIdBeingChecked == BraveAdBlockResourcesLibraryExtensionID {
-			extensionIdBeingChecked = "dlibbfbdhhamaleoofdjnejelcgldodb"
-		}
-
-		foundExtension, ok := allExtensionsMap.data[extensionIdBeingChecked]
+		foundExtension, ok := allExtensionsMap.data[extensionBeingChecked.ID]
 		if ok {
 			status := CompareVersions(extensionBeingChecked.Version, foundExtension.Version)
 			if !foundExtension.Blacklisted && status <= 0 {
