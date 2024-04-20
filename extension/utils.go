@@ -92,5 +92,5 @@ func GetUpdateStatus(extension Extension) string {
 
 // GetComponentUpdaterHost returns the url to use for extension updates
 func GetComponentUpdaterHost() string {
-	return lookupEnvFallback("COMPONENT_UPDATER_HOST", "componentupdater.brave.com")
+	return lookupEnvFallback("COMPONENT_UPDATER_HOST", "update.googleapis.com")
 }
