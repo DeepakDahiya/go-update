@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 	"time"
@@ -15,6 +16,7 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/go-chi/chi"
 	chiware "github.com/go-chi/chi/middleware"
+	"github.com/go-chi/httplog/v2"
 	"github.com/pressly/lg"
 	"github.com/sirupsen/logrus"
 )
@@ -41,6 +43,27 @@ func setupRouter(ctx context.Context, logger *logrus.Logger, testRouter bool) (c
 		// Also handles panic recovery
 		r.Use(middleware.RequestLogger(logger))
 	}
+
+	loggernew := httplog.NewLogger("httplog-example", httplog.Options{
+		// JSON:             true,
+		LogLevel:         slog.LevelDebug,
+		Concise:          true,
+		RequestHeaders:   true,
+		MessageFieldName: "message",
+		// TimeFieldFormat: time.RFC850,
+		Tags: map[string]string{
+			"version": "v1.0-81aa4244d9fc8076a",
+			"env":     "dev",
+		},
+		QuietDownRoutes: []string{
+			"/",
+			"/ping",
+		},
+		QuietDownPeriod: 10 * time.Second,
+		// SourceFieldName: "source",
+	})
+	r.Use(httplog.RequestLogger(loggernew))
+
 	extensions := extension.OfferedExtensions
 	r.Mount("/extensions", controller.ExtensionsRouter(extensions, testRouter))
 	return ctx, r

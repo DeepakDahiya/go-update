@@ -7,6 +7,7 @@ require (
 	github.com/brave-intl/bat-go v0.1.0
 	github.com/getsentry/sentry-go v0.27.0
 	github.com/go-chi/chi v4.1.2+incompatible
+	github.com/go-chi/httplog/v2 v2.0.9
 	github.com/pressly/lg v1.1.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.9.0
@@ -18,6 +19,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/getsentry/raven-go v0.2.1-0.20190619092523-5c24d5110e0e // indirect
+	github.com/go-chi/chi/v5 v5.0.10 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
