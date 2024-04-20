@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/brave/go-update/controller"
 )
 
 type PatchInfo struct {
@@ -84,7 +86,12 @@ func (updateRequest *UpdateRequest) FilterForUpdates(allExtensionsMap *Extension
 	allExtensionsMap.RLock()
 	defer allExtensionsMap.RUnlock()
 	for _, extensionBeingChecked := range *updateRequest {
-		foundExtension, ok := allExtensionsMap.data[extensionBeingChecked.ID]
+		extensionIdBeingChecked := extensionBeingChecked.ID
+		if extensionIdBeingChecked == controller.BraveAdBlockResourcesLibraryExtensionID {
+			extensionIdBeingChecked = "dlibbfbdhhamaleoofdjnejelcgldodb"
+		}
+
+		foundExtension, ok := allExtensionsMap.data[extensionIdBeingChecked]
 		if ok {
 			status := CompareVersions(extensionBeingChecked.Version, foundExtension.Version)
 			if !foundExtension.Blacklisted && status <= 0 {
