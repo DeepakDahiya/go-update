@@ -31,10 +31,6 @@ var PDFJSExtensionID = "oemmndcbldboiebfnladdacbdfmadadm"
 // directly to google servers
 var WidivineExtensionID = "oimompecagnajdejgnnjijobebaeigek"
 
-// For some reason Brave Ad Block resources Library have incorrect id while sending requests.
-// For now we want to map it to correct one manually
-var BraveAdBlockResourcesLibraryExtensionID = "clhhkcebpcklfnlfgcbjofofnklpifgg"
-
 // AllExtensionsMap holds a mapping of extension ID to extension object.
 // This list for tests is populated by extensions.OfferedExtensions.
 // For normal operations of this server it is obtained from the AWS config
