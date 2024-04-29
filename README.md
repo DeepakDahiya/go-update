@@ -45,3 +45,7 @@ Then:
 ## Run go-update:
 
 `./main`
+
+## Run Docker
+
+`docker run -d -p 8192:8192 -e SENTRY_DSN=<SENTRY_DSN>  -e DYNAMODB_ENDPOINT=https://dynamodb.us-west-2.amazonaws.com  -e AWS_REGION=us-west-2  -e AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>  -e AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY> jack2121/go-update:latest`
